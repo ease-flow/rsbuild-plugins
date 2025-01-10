@@ -10,10 +10,7 @@ export function pluginRsbuildTsxResolveTypes(options: UserOptions = {}): Rsbuild
     name: 'rsbuild-plugin-tsx-resolve-types',
     setup(api) {
       api.transform({ test: /\.(tsx|ts)$/ }, ({ code, resourcePath }) => {
-        const result = transform(code, resourcePath, options)
-        console.log(result)
-
-        return result
+        return transform(code, resourcePath, options)
       })
     },
   }

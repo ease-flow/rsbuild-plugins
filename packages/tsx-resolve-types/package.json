@@ -1,8 +1,11 @@
 {
   "name": "rsbuild-plugin-tsx-resolve-types",
-  "version": "1.0.0",
-  "license": "MIT",
   "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@9.14.4",
+  "description": "Rsbuild Plugin for parser vue3-tsx types. hmr unsupported.",
+  "license": "MIT",
+  "repository": "https://github.com/zzzzz-l-break/rsbuild-plugins/tree/main/packages/tsx-resolve-types",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -17,16 +20,15 @@
     "dist"
   ],
   "scripts": {
-    "build": "rslib build",
-    "dev": "rslib build --watch",
-    "lint": "biome check .",
-    "lint:write": "biome check . --write",
-    "prepare": "simple-git-hooks && npm run build",
-    "test": "playwright test",
-    "bump": "npx bumpp"
+    "build": "tsup"
   },
-  "simple-git-hooks": {
-    "pre-commit": "npm run lint:write"
+  "peerDependencies": {
+    "@rsbuild/core": "1.x"
+  },
+  "peerDependenciesMeta": {
+    "@rsbuild/core": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@babel/generator": "^7.26.3",
@@ -39,15 +41,6 @@
     "@types/babel__generator": "^7.6.8",
     "@types/babel__traverse": "^7.20.6"
   },
-  "peerDependencies": {
-    "@rsbuild/core": "1.x"
-  },
-  "peerDependenciesMeta": {
-    "@rsbuild/core": {
-      "optional": true
-    }
-  },
-  "packageManager": "pnpm@9.14.4",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"

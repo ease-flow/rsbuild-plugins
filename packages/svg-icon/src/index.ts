@@ -74,7 +74,7 @@ function createSvg(path: string, prefix: string): string {
 
 export function pluginRsbuildSvgIcons(options: SvgSpriteLoaderOptions): RsbuildPlugin {
   return {
-    name: 'rsbuild-plugin-svg-icons',
+    name: 'rsbuild-plugin-svg-icon',
 
     setup(api) {
       api.modifyHTMLTags(({ headTags, bodyTags }) => {
