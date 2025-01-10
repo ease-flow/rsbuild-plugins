@@ -5,7 +5,7 @@
 Install:
 
 ```bash
-npm add rsbuild-plugin-svg-icon -D
+npm add rsbuild-plugin-svg-sprites -D
 ```
 
 Add plugin to your `rsbuild.config.ts`:
@@ -13,12 +13,12 @@ Add plugin to your `rsbuild.config.ts`:
 ```typescript
 // rsbuild.config.ts
 import { defineConfig } from '@rsbuild/core'
-import { pluginRsbuildSvgIcons } from 'rsbuild-plugin-svg-icon'
+import { pluginRsbuildSvgSprites } from 'rsbuild-plugin-svg-sprites'
 
 export default defineConfig({
   plugins: [
-    pluginRsbuildSvgIcons({
-      path: 'src/assets/svg-icon',
+    pluginRsbuildSvgSprites({
+      path: 'src/assets/svg-icons',
       symbolId: 'icon-[name]',
     }),
   ],
