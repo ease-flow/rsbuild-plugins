@@ -1,7 +1,7 @@
 {
   "name": "rsbuild-plugin-svg-sprites",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "packageManager": "pnpm@9.14.4",
   "description": "Rsbuild Plugin for fast creating SVG sprites & hmr supported.(like vite-plugin-svg-icons)",
   "license": "MIT",

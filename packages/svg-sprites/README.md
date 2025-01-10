@@ -5,7 +5,7 @@
 Install:
 
 ```bash
-npm add rsbuild-plugin-svg-sprites -D
+pnpm add rsbuild-plugin-svg-sprites -D
 ```
 
 Add plugin to your `rsbuild.config.ts`:
