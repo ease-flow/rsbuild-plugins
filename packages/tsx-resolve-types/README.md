@@ -7,7 +7,7 @@ Rsbuild Plugin for parser vue3-tsx types. hmr unsupported.
 Install:
 
 ```bash
-npm add rsbuild-plugin-tsx-resolve-types -D
+pnpm add rsbuild-plugin-tsx-resolve-types -D
 ```
 
 Add plugin to your `rsbuild.config.ts`:

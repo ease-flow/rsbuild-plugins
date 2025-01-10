@@ -1,4 +1,4 @@
-# rsbuild-plugins
+# svg-sprites
 
 ## Usage
 
