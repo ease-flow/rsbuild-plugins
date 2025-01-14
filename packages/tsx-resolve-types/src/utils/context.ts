@@ -1,5 +1,6 @@
 import type { SimpleTypeResolveContext } from '@vue/compiler-sfc'
 import type { AST } from '../interface.js'
+import fs from 'node:fs'
 import { createAst } from './ast.js'
 
 export interface CreateContextType {
@@ -10,10 +11,11 @@ export interface CreateContextType {
   importMergeDefaults?: boolean
 }
 
-export function createContext(code: string, id: string): CreateContextType {
+export function createContext(code: string, id: string) {
   const ast = createAst(code)
   const helper = new Set<string>()
-  return {
+  const dependencies: string[] = []
+  const context: CreateContextType = {
     ast,
     filepath: id,
     source: code,
@@ -37,7 +39,42 @@ export function createContext(code: string, id: string): CreateContextType {
       propsDestructuredBindings: Object.create(null),
       emitsTypeDecl: undefined,
       isCE: false,
-      options: {},
+      options: {
+        fs: {
+          fileExists(_file: string): boolean {
+            // 检查文件是否存在
+            try {
+              const stat = fs.statSync(_file)
+              if (stat.isFile()) {
+                if (!(/node_modules/.test(_file)) && _file.endsWith('.ts')) {
+                  dependencies.push(_file)
+
+                  // if (map.get(id)) {
+                  //   const array = map.get(id)
+                  //   array?.push(_file)
+                  //   map.set(id, [...new Set(array || [])])
+                  // }
+                  // else {
+                  //   map.set(id, [_file])
+                  // }
+                }
+
+                return true
+              }
+              return false
+            }
+            // eslint-disable-next-line unused-imports/no-unused-vars
+            catch (e) {
+              return false
+            }
+          },
+          readFile(_file: string): string | undefined {
+            return fs.readFileSync(_file, 'utf-8')
+          },
+        },
+      },
     },
   }
+
+  return { context, dependencies }
 }

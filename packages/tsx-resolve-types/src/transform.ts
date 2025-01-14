@@ -6,24 +6,26 @@ import { checkMergeDefaults } from './utils/check-merge-defaults.js'
 import { createContext } from './utils/context.js'
 import { generate } from './utils/genrate.js'
 
-export function transform(code: string, id: string, options: UserOptions = {}) {
+export function transformTsx(code: string, id: string, options: UserOptions = {}) {
   if (options.props === false && options.emits === false)
-    return code
+    return { dependencies: [], code }
 
-  const ctx = createContext(code, id)
-  const expression = findComponents(ctx.ast)
+  const { context, dependencies } = createContext(code, id)
+  const expression = findComponents(context.ast)
   for (const callExpression of expression) {
     if (options.props !== false) {
-      resolveProps(callExpression, ctx)
+      resolveProps(callExpression, context)
     }
     if (options.emits !== false) {
-      resolveEmits(callExpression, ctx)
+      resolveEmits(callExpression, context)
     }
   }
-  checkMergeDefaults(ctx)
-  const gen = generate(ctx.ast)
+  checkMergeDefaults(context)
+  const gen = generate(context.ast)
+
   return {
     code: gen.code,
     map: gen.map,
+    dependencies,
   }
 }
