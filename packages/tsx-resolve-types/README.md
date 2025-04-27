@@ -1,4 +1,4 @@
-# rsbuild-plugin-example
+# tsx-resolve-types
 
 Rsbuild Plugin for parser vue3-tsx types & hmr unsupported.
 
